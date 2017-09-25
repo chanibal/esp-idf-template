@@ -5,6 +5,7 @@
 #include "esp_event_loop.h"
 #include "nvs_flash.h"
 #include "driver/gpio.h"
+#include "main.h"
 #include "calculator.h"		// example local component
 
 esp_err_t event_handler(void *ctx, system_event_t *event)
@@ -34,10 +35,10 @@ void app_main(void)
 
     print_add(13, 37);
 
-    gpio_set_direction(GPIO_NUM_4, GPIO_MODE_OUTPUT);
+    gpio_set_direction(GPIO_LED, GPIO_MODE_OUTPUT);
     int level = 0;
     while (true) {
-        gpio_set_level(GPIO_NUM_4, level);
+        gpio_set_level(GPIO_LED, level);
         level = !level;
         vTaskDelay(300 / portTICK_PERIOD_MS);
     }
