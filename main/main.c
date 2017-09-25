@@ -5,6 +5,7 @@
 #include "esp_event_loop.h"
 #include "nvs_flash.h"
 #include "driver/gpio.h"
+#include "calculator.h"		// example local component
 
 esp_err_t event_handler(void *ctx, system_event_t *event)
 {
@@ -30,6 +31,8 @@ void app_main(void)
     ESP_ERROR_CHECK( esp_wifi_set_config(WIFI_IF_STA, &sta_config) );
     ESP_ERROR_CHECK( esp_wifi_start() );
     ESP_ERROR_CHECK( esp_wifi_connect() );
+
+    print_add(13, 37);
 
     gpio_set_direction(GPIO_NUM_4, GPIO_MODE_OUTPUT);
     int level = 0;
